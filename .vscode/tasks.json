@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build C++ file",  // 任務名稱
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++23",                    // 使用 C++23 標準
+                "-g",                            // 加入除錯符號
+                "${file}",                       // 編譯當前開啟的 C++ 檔案，而非固定檔案
+                "-o",                            // 指定輸出執行檔
+                "${fileDirname}/${fileBasenameNoExtension}"  // 輸出執行檔至相同目錄
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true                // 設為默認建構任務
+            },
+            "problemMatcher": ["$gcc"],          // 錯誤與警告匹配
+            "detail": "Generated task for C++ compilation"
+        }
+    ]
+}
