@@ -11,6 +11,8 @@ void isTheyEqual(Word *wordArr[]);
 
 bool isEqual(string str, Word *wordArr[], int len);
 
+int HashFun(string str);
+
 int main(){
 
     Word *wordArr[100] = {NULL};
@@ -19,9 +21,10 @@ int main(){
     for(char str : input){
         if(str == ' '){
             Word *word = new Word;
+            int key HashFun(tem);
             word->word = tem;
-            word->next = wordArr[tem.length()];
-            wordArr[tem.length()] = word;
+            word->next = wordArr[key];
+            wordArr[key] = word;
             tem.clear();
         }
         else tem += str;
@@ -41,10 +44,8 @@ void isTheyEqual(Word *wordArr[]){
     for(int i = 1;i < 100;i++){
         Word *node = wordArr[i];
         while(node != NULL){
-            //cout << node->word << ":" << endl;
             int len = node->word.length();
             if(isEqual(node->word, wordArr, len)){
-                //cout << "2" << endl;
                 cout << node->word << endl;
             }
             node = node->next;
@@ -53,7 +54,6 @@ void isTheyEqual(Word *wordArr[]){
 }
 
 bool isEqual(string str, Word *wordArr[], int len){
-    // cout << str << ":" << endl;
     for(int i = 1;i < len;i++){
         int a = len - i;
         Word *node1 = wordArr[i];
@@ -61,13 +61,16 @@ bool isEqual(string str, Word *wordArr[], int len){
             Word *node2 = wordArr[a];
             while(node2 != NULL){
                 if(node1->word + node2->word == str || node2->word + node1->word == str) return true;
-                //cout << node1->word << " " << node2->word << endl;
                 node2 = node2->next;
             }
             node1 = node1->next;
         }
     }
     return false;
+}
+
+int HashFun(string str){
+    return str.length();
 }
 /*
 as sd df asdf sddf

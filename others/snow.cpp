@@ -8,7 +8,7 @@ struct snowFlakesNode{
     struct snowFlakesNode *next;
 };
 
-int code(int snowFlakes[]){
+int HashFun(int snowFlakes[]){
     return (snowFlakes[0] + snowFlakes[1] + snowFlakes[2] + snowFlakes[3] + snowFlakes[4] + snowFlakes[5]) % SIZE;
 }
 
@@ -57,15 +57,15 @@ int main(){
 
     snowFlakesNode *snow;
     static snowFlakesNode *snowFlakes[SIZE] = {NULL};
-    int n, snowCode;
+    int n, snowKey;
     cin >> n;
     for(int i = 0;i < n;i++){
         snow = new snowFlakesNode;
         if(snow == NULL) break;
         for(int j = 0;j < 6;j++) cin >> snow->snowFlakes[j];
-        snowCode = code(snow->snowFlakes);
-        snow->next = snowFlakes[snowCode];
-        snowFlakes[snowCode] = snow;
+        snowKey = HashFun(snow->snowFlakes);
+        snow->next = snowFlakes[snowKey];
+        snowFlakes[snowKey] = snow;
     }
     areEqual(snowFlakes);
 
