@@ -13,6 +13,8 @@ bool isEqual(string str, Word *wordArr[], int len);
 
 int HashFun(string str);
 
+int minLen = INT16_MAX, maxLen = INT16_MIN;
+
 int main(){
 
     Word *wordArr[100] = {NULL};
@@ -21,10 +23,12 @@ int main(){
     for(char str : input){
         if(str == ' '){
             Word *word = new Word;
-            int key HashFun(tem);
+            int key = HashFun(tem);
             word->word = tem;
             word->next = wordArr[key];
             wordArr[key] = word;
+            minLen = min(key, minLen);
+            maxLen = max(key+1, maxLen);
             tem.clear();
         }
         else tem += str;
@@ -41,11 +45,11 @@ int main(){
 }
 
 void isTheyEqual(Word *wordArr[]){
-    for(int i = 1;i < 100;i++){
+    for(int i = 1;i < maxLen;i++){
         Word *node = wordArr[i];
         while(node != NULL){
             int len = node->word.length();
-            if(isEqual(node->word, wordArr, len)){
+            if(isEqual(node->word, wordArr, len) && len >= minLen * 2){
                 cout << node->word << endl;
             }
             node = node->next;
