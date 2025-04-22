@@ -19,6 +19,11 @@ struct Node{
     }
 };
 
+struct Max3{
+    int num;
+    Max3 *next; 
+}
+
 
 int main(){
 
@@ -41,6 +46,7 @@ int main(){
                     tree.insert({name, child});
                     node->child.push_back()
                 }
+                node->child.push_back(child);
             }
         }
     }
