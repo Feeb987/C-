@@ -17,9 +17,11 @@ int main(){
         int in;
         cin >> in;
         if(in){
-
+````````````
         }
-        if(!in) cout << "l";
+        if(!in){
+            
+        }
     }
 
     return 0;
