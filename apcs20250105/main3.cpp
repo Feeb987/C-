@@ -27,24 +27,24 @@ void dfs(vector<int>& points, multiset<int>& diffs) {
     int q = dmax;
     // 嘗試將 q 作為新點加入
     
-        vector<int> removed;
-        bool ok = true;
-        // 檢查並移除 q 與現有點的距離
-        for (int x : points) {
-            int dist = abs(x - q);
-            auto it = diffs.find(dist);
-            if (it == diffs.end()) { ok = false; break; }
-            removed.push_back(dist);
-            diffs.erase(it);
-        }
-        if (ok) {
-            points.push_back(q);
-            // 繼續遞迴
-            dfs(points, diffs);
-            points.pop_back();
-        }
-        // 回溯：將已移除的距離放回 multiset
-        for (int d : removed) diffs.insert(d);
+    vector<int> removed;
+    bool ok = true;
+    // 檢查並移除 q 與現有點的距離
+    for (int x : points) {
+        int dist = abs(x - q);
+        auto it = diffs.find(dist);
+        if (it == diffs.end()) { ok = false; break; }
+        removed.push_back(dist);
+        diffs.erase(it);
+    }
+    if (ok) {
+        points.push_back(q);
+        // 繼續遞迴
+        dfs(points, diffs);
+        points.pop_back();
+    }
+    // 回溯：將已移除的距離放回 multiset
+    for (int d : removed) diffs.insert(d);
     
     // 嘗試將 q2 = lastPoint - dmax 作為新點（避免與 q 相同或非正的重複嘗試）
     int q2 = lastPoint - dmax;
