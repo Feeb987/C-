@@ -57,5 +57,22 @@
         "variant": "cpp",
         "algorithm": "cpp",
         "unordered_set": "cpp"
+    },
+    "background.editor": {
+        "image" : "file:///Users/feeeb987/Documents/其他/IMG_3653.jpg",
+        "useFront": true,
+        "style": {
+            "background-position": "100% 100%",
+            "background-size": "auto",
+            "opacity": 0.6
+        },
+        "styles": [
+            {},
+            {},
+            {}
+        ],
+        "images": [],
+        "interval": 0,
+        "random": false
     }
 }

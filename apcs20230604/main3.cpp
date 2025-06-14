@@ -1,46 +1,47 @@
 #include<bits/stdc++.h>
+using l = long long;
 using namespace std;
-queue<int> num;
+l i = 0;
+string in;
 
-int sub(int round);
+l s(int &h, int &t){
+    l num = 0;
+    h = t = -1;
+    while (i < in.size()){
+        char c = in[i];
+        if(c == 'T'){
+            int n = stoi(in.substr(i+1, 2));
+            i += 3;
+            if(t < 0) h = n;
+            else num += abs(t - n);
+            t = n;
+        }
+        else if(c == 'L'){
+            int r = in[i+1] - '0';
+            i += 2;
+            int h2, t2;
+            l c = s(h2, t2);
+            if(t < 0) h = h2;
+            else num += abs(t - h2);
+            t = t2;
+            num += c*r + (r-1)*(abs(h2-t2));
+        }
+        else if(c == 'E'){
+            i++;
+            return num;
+        }
+    }
+    return num;
+}
 
 int main(){
 
-    string in;
     cin >> in;
-    for(int i = 0;i < in.size();i++){
-        if(in[i] == 'T') num.push((int(in[i+1])-48) * 10 + (int(in[i+2])-48));
-        else if(in[i] == 'L') num.push(int(in[i+1])-48);
-        else if(in[i] == 'E') num.push(-1);
-    }
-    cout << sub(1);
+    int h, t;
+    l ans = s(h, t);
+    ans += abs(10 - h);
+    cout << ans;
 
     return 0;
 
 }
-
-int sub(int round){
-    
-    num.pop();
-    int sum = 0, head = num.front(), last = num.front();
-    while(!num.empty() || num.front() == -1){
-        if(num.front() > 9){
-            sum += abs(last - num.front());
-            last = num.front();
-            num.pop();
-        }
-        else if(num.front() < 10 && num.front() > 0){
-            sum += sub(last + num.front());
-        }
-        else{
-            sum = (sum + abs(last - head));
-            return sum;
-        }
-    }
-
-    return sum;
-
-}
-
-//T10T15T23T23T22T22T44 36
-//T10L2T15T22L2T15ET23ET44 78
