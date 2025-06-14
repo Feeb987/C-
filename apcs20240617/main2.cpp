@@ -1,32 +1,27 @@
-#include<iostream>
-#include<map>
+#include<bits/stdc++.h>
 using namespace std;
 
 int main(){
-	
-	map<char, int> app;
-	int m, n, k, rW = 0;
-	int to[6][2] = {{0, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 0}, {-1, -1}};
-	cin >> m >> n >> k;
-	int x = 0, y = m - 1, w;
-	string home[m], read;
-	for(int i = 0;i < m;i++){
-		cin >> home[i];
-	}
-	for(int i = 0;i < k;i++){
-		cin >> w;
-		if((x + to[w][0] < n && x + to[w][0] >= 0 ) && (y + to[w][1] < m && y + to[w][1] >= 0)){
-			x += to[w][0];y += to[w][1];
-			read += string(1, home[y][x]);
-		}
-		else{
-			read += home[y][x];
-		}
-		if(app[home[y][x]] == 0) rW++;
-		app[home[y][x]]++;
-	}
-	cout << read << endl << rW;
-	
-	return 0;
-	
+
+    int h, w, r, x, y, t, c;
+    cin >> h >> w >> r;
+    vector<vector<int> > paper(h, vector<int>(w, 0));
+    for(int i = 0;i < r;i++){
+        cin >> y >> x >> t >> c;
+        for(int l = 0;l < h;l++){
+            for(int k = 0;k < w;k++){
+                if(abs(l-y)+abs(k-x) <= t){
+                    paper[l][k] += c;
+                }
+            }
+        }
+    }
+    for(int i = 0;i < h;i++){
+        for(int l = 0;l < w;l++){
+            cout << paper[i][l] << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+
 }

@@ -2,22 +2,45 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build C++ file",  // 任務名稱
+            "label": "build with g++-15 (C++23)",
             "type": "shell",
-            "command": "g++",
+            "command": "/opt/homebrew/bin/g++-15",
             "args": [
-                "-std=c++23",                    // 使用 C++23 標準
-                "-g",                            // 加入除錯符號
-                "${file}",                       // 編譯當前開啟的 C++ 檔案，而非固定檔案
-                "-o",                            // 指定輸出執行檔
-                "${fileDirname}/${fileBasenameNoExtension}"  // 輸出執行檔至相同目錄
+                "-std=c++23",
+                "-Wall",
+                "-Wextra",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
             ],
             "group": {
                 "kind": "build",
-                "isDefault": true                // 設為默認建構任務
+                "isDefault": true
             },
-            "problemMatcher": ["$gcc"],          // 錯誤與警告匹配
-            "detail": "Generated task for C++ compilation"
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++-14 建置使用中檔案",
+            "command": "/opt/homebrew/bin/g++-14",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "偵錯工具產生的工作。"
         }
     ]
 }

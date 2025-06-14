@@ -1,35 +1,24 @@
-#include<iostream>
-#include<set>
-#include<string>
+#include <iostream>
+#include<vector>
+#include<queue>
 using namespace std;
-set<string> st;
-string w, t, str;
-int r;
 
-void dfs(int index);
+int p, q, r, m;
 
-int main(){
+struct logic{
+    int type, state;
+    struct
+}
 
-    cin >> w >> r >> t;
-    str = string(r, w[0]);
-    for(int i = 0;i < t.size();i++){
-        st.insert(t.substr(i, r));
+int main() {
+
+    cin >> p >> q >> r >> m;
+    for(int i = 0;i < p;i++){
+        int a;
+        cin >> a;
     }
-    dfs(0);
+
 
     return 0;
 
 }
-
-void dfs(int index){
-    if(index >= r){
-        if(st.count(str)) return;
-        cout << str;
-        exit(0);
-    }
-    for(int i = 0;i < w.size();i++){
-        str[index] = w[i];
-        dfs(index+1);
-    }
-}
-
